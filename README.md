@@ -33,11 +33,6 @@ Databases available:
 - Subscriber PostgreSQL DB: JDBC URL: `jdbc:postgresql://localhost:5432/subscriberdb` ; user name: `root` ; password: `root`
 
 
-
-Test available:
-- [payment/test-requests.http](payment/test-requests.http)
-
-
 ## Stop Docker compose locally
 ```shell
 docker-compose down -v
