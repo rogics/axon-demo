@@ -26,7 +26,7 @@ Applications available:
 
 
 - [Subscriber Health Endpoint - http://localhost:8099/actuator/health](http://localhost:8099/actuator/health)
-- [Subscriber Swagger UI Endpoint - http://localhost:8099/swagger-ui.html](http://localhost:8099/actuator/health)
+- [Subscriber Swagger UI Endpoint - http://localhost:8099/swagger-ui.html](http://localhost:8099/swagger-ui.html)
 
 Databases available:
 - Publisher PostgreSQL DB: JDBC URL: `jdbc:postgresql://localhost:5432/publisherdb` ; user name: `root` ; password: `root`
