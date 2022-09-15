@@ -1,0 +1,68 @@
+version: '2.4'
+
+services:
+
+  publisher:
+    container_name: demo-publisher
+    image: demo-publisher:latest
+    ports:
+        - "8089:8089"
+    environment:
+      - AXON_AXONSERVER_SERVERS=axonserver
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql:5432/publisherdb
+    networks:
+      - demo
+
+  subscriber:
+    container_name: demo-subscriber
+    image: demo-subscriber:latest
+    ports:
+      - "8099:8099"
+    environment:
+      - AXON_AXONSERVER_SERVERS=axonserver
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql:5432/subscriberdb
+    networks:
+      - demo
+
+  postgresql:
+    image: postgres
+    container_name: demo-postgres
+    hostname: demo-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: root
+    volumes: 
+      - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+    networks: 
+      - demo
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  axonserver:
+    image: axoniq/axonserver
+    container_name: demo-axonserver
+    hostname: demo-axonserver
+    volumes:
+      - axonserver-data:/data
+      - axonserver-events:/eventdata
+      - axonserver-config:/config:ro
+    ports:
+      - '8024:8024'
+      - '8124:8124'
+      - '8224:8224'
+    networks:
+      - demo
+
+
+    
+volumes:
+  axonserver-data:
+  axonserver-events:
+  axonserver-config:
+
+networks: 
+  demo:
