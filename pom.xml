@@ -15,8 +15,9 @@
 	<description>axon-demo</description>
 	<packaging>pom</packaging>
 	<properties>
-		<java.version>11</java.version>
-		<axon.version>4.5.17</axon.version>
+		<java.version>17</java.version>
+		<axon.version>4.6.0</axon.version>
+		<spring-cloud.version>2021.0.1</spring-cloud.version>
 	</properties>
 
 	<dependencyManagement>
@@ -33,6 +34,20 @@
 				<artifactId>springdoc-openapi-ui</artifactId>
 				<version>1.6.11</version>
 			</dependency>
+
+			<dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka-clients</artifactId>
+                <version>3.2.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
 
 		</dependencies>
 	</dependencyManagement>
