@@ -23,7 +23,7 @@ public class PaymentOrderIdempotentSaga {
     @SagaEventHandler(associationProperty = "Id")
     public void on(PaymentOrderCreatedEvent event, @SequenceNumber Long sequenceNumber) {
         logger.info("PaymentOrderIdempotentSaga - EventHandler for PaymentOrderCreatedEvent started: "+event.toString()+" seq:"+sequenceNumber.toString());
-        if (paymentOrderCreatedEventLatestSequenceNumber > sequenceNumber) {
+        if (sequenceNumber > paymentOrderCreatedEventLatestSequenceNumber ) {
             
             //Do something
             paymentOrderCreatedEventLatestSequenceNumber=sequenceNumber;
